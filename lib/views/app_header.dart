@@ -4,10 +4,12 @@ import '../uitheme/style.dart';
 
 class AppHeaderClass extends StatelessWidget {
   final title_text;
+  final title_text2;
 
   const AppHeaderClass({
     super.key,
-    this.title_text});
+    this.title_text,
+    this.title_text2});
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +21,8 @@ class AppHeaderClass extends StatelessWidget {
       width = width / 2;
     }
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
           decoration: BoxDecoration(
@@ -30,26 +32,37 @@ class AppHeaderClass extends StatelessWidget {
                   500), // Set the bottom-left border radius here
             ),
           ),
-          height: 150,
+          height: 160,
           child: Column(
             children: [
               Image.asset(
                 'assets/images/logo2.png',
-                width: 100,
+                width: 80,
               ),
+              SizedBox(height: 10,),
+              Center(
+          child: Text(
+            title_text,
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w700,
+              color: Colors.white
+            ),
+          ),
+        ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Center(
                     child: Text(
-                      title_text,
+                      title_text2,
                       style: TextStyle(
                           fontSize: 22,
                           color: Colors.white
                       ),
                     ),
                   ),
-                  Container(width: 10,),
+                  SizedBox(width: 10,height: 10,),
                 ],
               ),
             ],

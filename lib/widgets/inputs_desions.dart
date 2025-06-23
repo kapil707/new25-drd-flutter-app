@@ -13,12 +13,7 @@ class Mybutton extends StatelessWidget {
   final TextStyle? btnStyle;
   final VoidCallback? callBack;
 
-  Mybutton({
-    required this.btnName,
-    this.btnIcon,
-    this.btnStyle,
-    this.callBack,
-  });
+  Mybutton({required this.btnName, this.btnIcon, this.btnStyle, this.callBack});
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +22,8 @@ class Mybutton extends StatelessWidget {
         callBack!();
       },
       style: ElevatedButton.styleFrom(
+        elevation: 8, // shadow depth
+        shadowColor: Colors.black.withOpacity(0.4),
         backgroundColor: main_btn_bg_style(),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
@@ -39,7 +36,7 @@ class Mybutton extends StatelessWidget {
               children: [
                 btnIcon!,
                 Container(width: 11),
-                Text(btnName, style: btnStyle)
+                Text(btnName, style: btnStyle),
               ],
             )
           : Text(btnName, style: btnStyle),
@@ -63,14 +60,15 @@ class MyTextField extends StatelessWidget {
   @override
   Widget build(Object context) {
     return TextField(
-      style: TextStyle(fontSize: 15.0),
+      style: login_page_input_text(),
       controller: mytextController,
       decoration: InputDecoration(
         labelText: mylabelText,
         hintText: myhintText,
-        hintStyle: TextStyle(fontSize: 15.0),
+        hintStyle: login_page_input_text(),
         prefixIcon: myprefixIcon!,
         border: InputBorder.none,
+        contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 12),
       ),
     );
   }
@@ -91,19 +89,17 @@ class _MyPasswordTextFieldState extends State<MyPasswordTextField> {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      style: TextStyle(fontSize: 15.0),
+      style: login_page_input_text(),
       controller: widget.mytextController,
       obscureText: _isObscure,
       decoration: InputDecoration(
         prefixIcon: Icon(Icons.key_sharp),
         hintText: "Enter password",
-        hintStyle: TextStyle(fontSize: 15.0),
-        fillColor: Colors.white,
-        border: InputBorder.none,
+        hintStyle: login_page_input_text(),
+        border: InputBorder.none, // ✅ No border
+        contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 12),
         suffixIcon: IconButton(
-          icon: Icon(
-            _isObscure ? Icons.visibility : Icons.visibility_off,
-          ),
+          icon: Icon(_isObscure ? Icons.visibility : Icons.visibility_off),
           onPressed: () {
             setState(() {
               _isObscure = !_isObscure;
@@ -145,14 +141,13 @@ class MyTextSearchField extends StatelessWidget {
         prefixIcon: myprefixIcon!,
         border: InputBorder.none,
         suffixIcon: IconButton(
-          icon: Icon(Icons.clear, size: 25,),
+          icon: Icon(Icons.clear, size: 25),
           onPressed: myclearSearchBox,
         ),
       ),
     );
   }
 }
-
 
 class IconButtonWithText extends StatelessWidget {
   final IconData icon;
@@ -174,19 +169,13 @@ class IconButtonWithText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isDesktop(BuildContext context) =>
-        MediaQuery
-            .of(context)
-            .size
-            .width >= 600;
+        MediaQuery.of(context).size.width >= 600;
     return InkWell(
       onTap: onPressed,
       child: Row(
         children: [
-          Icon(
-            icon,
-            color: icon_color,
-            size: icon_size().height,),
-          if(icon_text!="")...{
+          Icon(icon, color: icon_color, size: icon_size().height),
+          if (icon_text != "") ...{
             Padding(
               padding: const EdgeInsets.only(bottom: 18.0),
               child: Container(
@@ -195,19 +184,21 @@ class IconButtonWithText extends StatelessWidget {
                   color: icon_color,
                   borderRadius: BorderRadius.circular(8.0),
                 ),
-                child: Text(" " + icon_text + " ", style: TextStyle(
-                  color: top_bar_cart_color(),
-                  fontWeight: FontWeight.bold,
-                  fontSize: 12,
-                ),
+                child: Text(
+                  " " + icon_text + " ",
+                  style: TextStyle(
+                    color: top_bar_cart_color(),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 12,
+                  ),
                 ),
               ),
             ),
           },
-          if(isDesktop(context))...{
+          if (isDesktop(context)) ...{
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(icon_title, style: top_bar_icon_title(),),
+              child: Text(icon_title, style: top_bar_icon_title()),
             ),
           },
         ],
@@ -233,7 +224,7 @@ class AddToCartInputBox extends StatelessWidget {
     return TextField(
       keyboardType: TextInputType.number,
       inputFormatters: <TextInputFormatter>[
-        FilteringTextInputFormatter.digitsOnly
+        FilteringTextInputFormatter.digitsOnly,
       ],
       focusNode: focusNode,
       controller: mytextController,
