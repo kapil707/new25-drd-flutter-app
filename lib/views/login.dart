@@ -1,8 +1,12 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import '../retrofit_api.dart';
+import '../session.dart';
 import '../uitheme/style.dart';
 import '../widgets/inputs_desions.dart';
 import 'app_footer.dart';
 import 'app_header.dart';
+import 'main_page.dart';
 
 class LoginClass extends StatefulWidget {
   const LoginClass({super.key});
@@ -12,10 +16,93 @@ class LoginClass extends StatefulWidget {
 }
 
 class _LoginClassState extends State<LoginClass> {
+  final apiService = MyApiService(Dio());
+
   var username = TextEditingController();
   var password = TextEditingController();
   var login_status_message = "";
   bool isLoading = false;
+
+  void _functionLogin(_context, String _username, String _password) async {
+    var status_message = "";
+    if (_username == "") {
+      //AppAlertBox.showAlertDialog(_context, "Error", "Enter username");
+      status_message = "Enter username";
+      setState(() {
+        isLoading = false;
+        login_status_message = status_message;
+      });
+    }
+    if (_password == "") {
+      //AppAlertBox.showAlertDialog(_context, "Error", "Enter password");
+      status_message = "Enter password";
+      setState(() {
+        isLoading = false;
+        login_status_message = status_message;
+      });
+    }
+    if (_username != "" && _password != "") {
+      setState(() {
+        isLoading = true;
+      });
+      try {
+        final response = await apiService.get_login_api(
+          "xx",
+          _username,
+          _password,
+          "",
+        );
+        final status = response.items.first.status;
+        status_message = response.items.first.status_message;
+        if (status.toString() == "0") {
+          //AppAlertBox.showAlertDialog(_context, "Error", status_message);
+          setState(() {
+            isLoading = false;
+            login_status_message = status_message;
+          });
+        }
+        if (status.toString() == "1") {
+          setState(() {
+            isLoading = false;
+            login_status_message = status_message;
+          });
+
+          var user_session = response.items.first.user_session;
+          var user_fname = response.items.first.user_fname;
+          var user_code = response.items.first.user_code;
+          var user_altercode = response.items.first.user_altercode;
+          var user_type = response.items.first.user_type;
+          var user_password = response.items.first.user_password;
+          var user_image = response.items.first.user_image;
+          var user_nrx = response.items.first.user_nrx;
+          var user_cart = 0;
+
+          print('ok ha yha tak to');
+
+          Shared.saveLoginSharedPreference(
+            true,
+            user_type,
+            user_code,
+            user_altercode,
+            user_password,
+            user_image,
+            user_fname,
+            user_nrx,
+            user_cart,
+          ).then((value) {});
+          /**************************/
+          Navigator.pushReplacement(
+            _context,
+            MaterialPageRoute(builder: (context) => const MainPage()),
+          );
+        }
+      } catch (e) {
+        // Handle login error
+        print('Login error: $e');
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     bool isDesktop(BuildContext context) =>
@@ -115,9 +202,13 @@ class _LoginClassState extends State<LoginClass> {
                                   ),
                                   btnStyle: mTextStyle11(),
                                   callBack: () {
-                                    /*String _username = username.text.toString();
-                          String _password = password.text.toString();
-                          _functionLogin(context, _username, _password);*/
+                                    String _username = username.text.toString();
+                                    String _password = password.text.toString();
+                                    _functionLogin(
+                                      context,
+                                      _username,
+                                      _password,
+                                    );
                                   },
                                 ),
                             ],
