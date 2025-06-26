@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 
-import '../controllers/my_notification_details.dart';
 import '../uitheme/style.dart';
 
-class MyNotificationResponse extends StatelessWidget {
+class MyNotificationDetailsResponse extends StatelessWidget {
   final List json;
-  final ScrollController scrollController;
 
-  MyNotificationResponse({required this.json, required this.scrollController});
+  MyNotificationDetailsResponse({required this.json});
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       scrollDirection: Axis.vertical,
       itemCount: json.length,
-      controller: scrollController,
       itemBuilder: (context, index) {
         return Padding(
           padding: const EdgeInsets.only(left: 5.0, right: 5.0, bottom: 5.0),
@@ -26,14 +24,15 @@ class MyNotificationResponse extends StatelessWidget {
             ),
             child: GestureDetector(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => MyNotificationDetailsClass(
-                      item_id: json[index]['item_id'],
-                    ),
-                  ),
-                );
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) =>
+                //         MyNotificationDetailsClass(
+                //           item_id: json[index]['item_id'],
+                //         ),
+                //   ),
+                // );
               },
               child: Padding(
                 padding: const EdgeInsets.all(5.0),
@@ -71,11 +70,7 @@ class MyNotificationResponse extends StatelessWidget {
                                 ),
                                 Wrap(
                                   children: [
-                                    Text(
-                                      json[index]['item_message'],
-                                      style: all_item_margin(),
-                                      textAlign: TextAlign.left,
-                                    ),
+                                    Html(data: json[index]['item_message']),
                                   ],
                                 ),
                                 Wrap(
