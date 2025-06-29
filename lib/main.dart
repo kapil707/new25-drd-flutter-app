@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:new25_drd_flutter_app/views/main_page.dart';
 
+import 'controllers/my_invoice.dart';
 import 'controllers/my_notification.dart';
+import 'controllers/my_order.dart';
 import 'views/login.dart';
 
 void main() {
@@ -29,9 +31,9 @@ class MyApp extends StatelessWidget {
         /*
         '/home': (context) => HomePageClass(),
         '/medicine_search': (context) => MedicineSearchClass(),
-        '/my_cart': (context) => MyCartClass(),
+        '/my_cart': (context) => MyCartClass(),*/
         '/my_order': (context) => MyOrderClass(),
-        '/my_invoice': (context) => MyInvoiceClass(),*/
+        '/my_invoice': (context) => MyInvoiceClass(),
         '/my_notification': (context) => MyNotificationClass(),
       },
     );

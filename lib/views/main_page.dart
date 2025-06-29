@@ -33,6 +33,36 @@ class _MainPageState extends State<MainPage> {
               ],
             ),
           ),
+
+          InkWell(
+            onTap: () {
+              Navigator.pushReplacementNamed(context, '/my_order');
+            },
+            child: Column(
+              children: [
+                Icon(Icons.notifications_active_rounded, color: Colors.white),
+                Text(
+                  "My order",
+                  style: TextStyle(fontSize: 13, color: Colors.white),
+                ),
+              ],
+            ),
+          ),
+
+          InkWell(
+            onTap: () {
+              Navigator.pushReplacementNamed(context, '/my_invoice');
+            },
+            child: Column(
+              children: [
+                Icon(Icons.notifications_active_rounded, color: Colors.white),
+                Text(
+                  "My Invoice",
+                  style: TextStyle(fontSize: 13, color: Colors.white),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
