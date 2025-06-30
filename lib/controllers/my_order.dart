@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../retrofit_api.dart';
 import '../uitheme/style.dart';
-import '../views/my_order_response.dart';
+import '../views/my_order_view.dart';
 import '../widgets/CustomAppBar.dart';
 import '../widgets/main_funcation.dart';
 
@@ -139,7 +139,7 @@ class _MyOrderClassState extends State<MyOrderClass> {
               child: Column(
                 children: [
                   Container(
-                    height: MediaQuery.of(context).size.height - 160,
+                    height: MediaQuery.of(context).size.height - 200,
                     child: MyOrderResponse(
                       json: items,
                       scrollController: _scrollController,

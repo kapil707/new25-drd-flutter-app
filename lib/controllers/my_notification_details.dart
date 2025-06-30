@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../retrofit_api.dart';
 import '../uitheme/style.dart';
-import '../views/my_notification_details_response.dart';
+import '../views/my_notification_details_view.dart';
 import '../widgets/CustomAppBar.dart';
 import '../widgets/main_funcation.dart';
 
@@ -132,7 +132,7 @@ class _MyNotificationDetailsClassState
               child: Column(
                 children: [
                   Container(
-                    height: MediaQuery.of(context).size.height - 160,
+                    height: MediaQuery.of(context).size.height - 200,
                     child: MyNotificationDetailsResponse(json: items),
                   ),
                 ],

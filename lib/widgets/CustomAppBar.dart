@@ -350,7 +350,7 @@ class AllPageTopBar extends StatelessWidget {
                       alignment: Alignment.center,
                       child: Text(
                         page_title3,
-                        style: TextStyle(color: Colors.white),
+                        style: top_bar_fix_text1_style(),
                       ),
                     ),
                     Container(width: 15),

@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../retrofit_api.dart';
 import '../uitheme/style.dart';
-import '../views/my_notification_response.dart';
+import '../views/my_notification_view.dart';
 import '../widgets/CustomAppBar.dart';
 import '../widgets/main_funcation.dart';
 
@@ -139,7 +139,7 @@ class _MyNotificationClassState extends State<MyNotificationClass> {
               child: Column(
                 children: [
                   Container(
-                    height: MediaQuery.of(context).size.height - 160,
+                    height: MediaQuery.of(context).size.height - 200,
                     child: MyNotificationResponse(
                       json: items,
                       scrollController: _scrollController,

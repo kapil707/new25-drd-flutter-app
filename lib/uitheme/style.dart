@@ -26,7 +26,19 @@ TextStyle top_bar_menu_loading_style() {
 }
 
 TextStyle top_bar_fix_textbox_style() {
-  return TextStyle(fontSize: 15, color: Color.fromRGBO(108, 117, 125, 1));
+  return TextStyle(
+    fontSize: 15,
+    color: Color.fromRGBO(108, 117, 125, 1),
+    fontWeight: FontWeight.w700,
+  );
+}
+
+TextStyle top_bar_fix_text1_style() {
+  return TextStyle(
+    fontSize: 15,
+    color: Colors.white,
+    fontWeight: FontWeight.w700,
+  );
 }
 
 Color top_bar_icon_color() {
@@ -247,7 +259,7 @@ TextStyle all_item_price() {
 
 /***********************************************************/
 TextStyle all_item_v_line() {
-  return TextStyle(fontSize: 12, color: Color.fromRGBO(84, 82, 82, 1.0));
+  return TextStyle(fontSize: 14, color: Color.fromRGBO(84, 82, 82, 1.0));
 }
 
 TextStyle all_item_title() {
