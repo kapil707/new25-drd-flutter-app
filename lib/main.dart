@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:new25_drd_flutter_app/views/main_page.dart';
 
+import 'controllers/my_cart.dart';
 import 'controllers/my_invoice.dart';
 import 'controllers/my_notification.dart';
 import 'controllers/my_order.dart';
-import 'views/login.dart';
+import 'views/login_view.dart';
 
 void main() {
   runApp(MyApp());
@@ -30,8 +31,8 @@ class MyApp extends StatelessWidget {
         '/login': (context) => LoginClass(),
         /*
         '/home': (context) => HomePageClass(),
-        '/medicine_search': (context) => MedicineSearchClass(),
-        '/my_cart': (context) => MyCartClass(),*/
+        '/medicine_search': (context) => MedicineSearchClass(),*/
+        '/my_cart': (context) => MyCartClass(),
         '/my_order': (context) => MyOrderClass(),
         '/my_invoice': (context) => MyInvoiceClass(),
         '/my_notification': (context) => MyNotificationClass(),
